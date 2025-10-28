@@ -9,5 +9,5 @@ public class BookReservation {
     private String bookTitle;
     private String readerName;
     private String readerAddress;
-    private Long numberOfCopies;
+    private int numberOfCopies;
 }
