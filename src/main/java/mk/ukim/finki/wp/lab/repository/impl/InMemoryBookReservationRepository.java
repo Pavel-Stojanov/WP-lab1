@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 public class InMemoryBookReservationRepository implements BookReservationRepository {
     @Override
     public BookReservation save(BookReservation reservation) {
-        DataHolder.reservations.removeIf(c -> c.getBookTitle().equals(reservation.getBookTitle()));
+        DataHolder.reservations.removeIf(b -> b.getBookTitle().equals(reservation.getBookTitle()));
         DataHolder.reservations.add(reservation);
         return reservation;
     }

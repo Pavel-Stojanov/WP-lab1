@@ -31,12 +31,11 @@ public class BookReservationServlet extends HttpServlet {
 
         String bookTitle = req.getParameter("bookTitle");
         String readerName = req.getParameter("readerName");
-        String readerAddress = req.getParameter("readerAddress");
         Integer numOfCopies = Integer.valueOf(req.getParameter("numOfCopies"));
 
         context.setVariable("bookTitle", bookTitle);
         context.setVariable("readerName", readerName);
-        context.setVariable("readerAddress", readerAddress);
+        context.setVariable("ipAddress", req.getRemoteAddr());
         context.setVariable("numOfCopies", numOfCopies);
 
         templateEngine.process("reservationConfirmation.html", context, resp.getWriter());
@@ -47,9 +46,9 @@ public class BookReservationServlet extends HttpServlet {
         String bookTitle = req.getParameter("bookTitle");
         String readerName = req.getParameter("readerName");
         String readerAddress = req.getParameter("readerAddress");
-        int numOfCopies = Integer.parseInt(req.getParameter("numOfCopies"));
+        int numCopies = Integer.parseInt(req.getParameter("numCopies"));
 
-        BookReservation bookReservation = bookReservationService.placeReservation(readerName, readerAddress, bookTitle, numOfCopies);
+        BookReservation bookReservation = bookReservationService.placeReservation(readerName, readerAddress, bookTitle, numCopies);
 
         String params = String.format("bookTitle=%s&readerName=%s&readerAddress=%s&numOfCopies=%d", bookReservation.getBookTitle(), bookReservation.getReaderName(), bookReservation.getReaderAddress(), bookReservation.getNumberOfCopies());
 
